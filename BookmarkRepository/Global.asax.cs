@@ -19,6 +19,7 @@ namespace BookmarkRepository
             AreaRegistration.RegisterAllAreas();
 
             DependencyConfig.RegisterDependencies();
+            ObjectMappingConfig.RegisterMappings();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

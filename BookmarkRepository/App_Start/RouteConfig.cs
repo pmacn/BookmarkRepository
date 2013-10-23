@@ -18,6 +18,8 @@ namespace BookmarkRepository
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            ControllerBuilder.Current.SetControllerFactory(DependencyConfig.Get<IControllerFactory>());
         }
     }
 }

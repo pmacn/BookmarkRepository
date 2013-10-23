@@ -8,27 +8,22 @@ namespace BookmarkRepository
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            bundles.Add(new ScriptBundle("~/bundles/base").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js",
+                        "~/Scripts/mousetrap.min.js",
+                        "~/Scripts/knockout-{version}.js",
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                        "~/Scripts/knockout-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ajaxlogin").Include(
                 "~/Scripts/app/ajaxlogin.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/todo").Include(
-                "~/Scripts/app/todo.bindings.js",
-                "~/Scripts/app/todo.datacontext.js",
-                "~/Scripts/app/todo.model.js",
-                "~/Scripts/app/todo.viewmodel.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bookmark").Include(
+                "~/Scripts/app/bookmark.bindings.js",
+                "~/Scripts/app/bookmark.datacontext.js",
+                "~/Scripts/app/bookmark.model.js",
+                "~/Scripts/app/bookmark.viewmodel.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -37,7 +32,7 @@ namespace BookmarkRepository
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/Site.css",
-                "~/Content/TodoList.css"));
+                "~/Content/Bookmarks.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

@@ -1,0 +1,27 @@
+﻿ul#bookmarks {
+    padding: 0.2em;
+    list-style-type: none;
+    font-family:  Arial, Verdana, sans-serif;
+}
+
+li.bookmark {
+    margin: 0.2em;
+    padding: 0.2em;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    border-radius: 0.2em;
+    background-color: lightgray;
+}
+
+ul#bookmarks > li.bookmark > .name {
+    margin: 0.1em;
+}
+
+ul#bookmarks > li.bookmark > .url {
+    margin: 0.1em;
+    text-decoration: none;
+}
+
+li.selectedBookmark {
+    background-color: azure;
+}

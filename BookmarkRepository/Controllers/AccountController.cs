@@ -14,7 +14,6 @@ using BookmarkRepository.Models;
 namespace BookmarkRepository.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -28,7 +27,6 @@ namespace BookmarkRepository.Controllers
             {
                 if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     return Json(new { success = true, redirect = returnUrl });
                 }
 
@@ -65,7 +63,6 @@ namespace BookmarkRepository.Controllers
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
 
-                    FormsAuthentication.SetAuthCookie(model.UserName, createPersistentCookie: false);
                     return Json(new { success = true, redirect = returnUrl });
                 }
                 catch (MembershipCreateUserException e)

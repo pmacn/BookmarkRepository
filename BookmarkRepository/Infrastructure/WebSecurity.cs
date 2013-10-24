@@ -28,7 +28,7 @@ namespace BookmarkRepository.Infrastructure
                 if (!Crypto.VerifyHashedPassword(user.Password, password))
                     return false;
 
-                HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(userName), user.Roles.ToArray());
+                FormsAuthentication.SetAuthCookie(userName, persistCookie);
                 return true;
             }
         }
@@ -36,7 +36,6 @@ namespace BookmarkRepository.Infrastructure
         public static void Logout()
         {
             FormsAuthentication.SignOut();
-            HttpContext.Current.User = null;
         }
 
         public static string CreateUserAndAccount(string userName, string password)

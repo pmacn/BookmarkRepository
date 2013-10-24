@@ -10,7 +10,6 @@
         self.name = ko.observable(data.name || '');
         self.errorMessage = ko.observable();
         self.tags = ko.observableArray(data.tags || []);
-
         self.toJson = function () { return ko.toJSON(self); };
     }
 })(ko, bookmarkApp.datacontext);

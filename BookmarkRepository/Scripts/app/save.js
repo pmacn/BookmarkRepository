@@ -14,7 +14,7 @@
 
     function createBookmark(markingUrl, bookmarkUrl, bookmarkName) {
         createDialog('Saving your bookmark');
-        
+
         var request = new XMLHttpRequest();
         request.open('post', markingUrl, true);
         request.setRequestHeader('Content-Type', 'application/json');

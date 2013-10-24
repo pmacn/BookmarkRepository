@@ -3,13 +3,13 @@ window.bookmarkApp.viewModel = (function bookmarksViewmodel(ko, datacontext) {
     var bookmarks = ko.observableArray([]),
         userToken = ko.observable(),
         baseUrl = window.location.href,
-        bookmarkletLink = ko.computed(function() {
+        bookmarkletLink = ko.computed(function () {
             if (!userToken()) return null;
-            
+
             return "javascript:(function(){var d=document,s=d.createElement('script');window.markingUrl='" + baseUrl + "api/bookmarks/?token=" + userToken() + "';s.setAttribute('src','" + baseUrl + "Scripts/app/save.js');s.setAttribute('type','text/javascript');s.setAttribute('charset','UTF-8');d.body.appendChild(s);})();"
         }),
         selectedBookmarkIndex = ko.observable(0),
-        selectedBookmark = ko.computed(function() {
+        selectedBookmark = ko.computed(function () {
             if (bookmarks() && bookmarks().length > 0) {
                 var index = selectedBookmarkIndex();
                 return bookmarks()[index];
@@ -17,19 +17,19 @@ window.bookmarkApp.viewModel = (function bookmarksViewmodel(ko, datacontext) {
 
             return null;
         }),
-        deleteBookmark = function(observableBookmark) {
+        deleteBookmark = function (observableBookmark) {
             datacontext.deleteBookmark(observableBookmark)
                 .done(function () {
                     bookmarks.remove(observableBookmark());
                 });
         },
-        selectNextBookmark = function() {
+        selectNextBookmark = function () {
             var index = selectedBookmarkIndex();
             if (bookmarks() && bookmarks().length > index + 1) {
                 selectedBookmarkIndex(index + 1);
             }
         },
-        selectPreviousBookmark = function() {
+        selectPreviousBookmark = function () {
             var index = selectedBookmarkIndex();
             if (bookmarks() && bookmarks().length > 0 && index > 0) {
                 selectedBookmarkIndex(index - 1);

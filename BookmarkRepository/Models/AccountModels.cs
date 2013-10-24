@@ -21,10 +21,19 @@ namespace BookmarkRepository.Models
     [Table("UserProfile")]
     public class UserProfile
     {
+        public UserProfile()
+        {
+            Roles = new List<string>();
+        }
+
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+        [Required]
         public string UserName { get; set; }
+        [Required]
+        public string Password { get; set; }
+        public IList<string> Roles { get; set; }
     }
 
     public class RegisterExternalLoginModel

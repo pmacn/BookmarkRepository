@@ -11,7 +11,7 @@ window.bookmarkApp.datacontext = (function () {
 
     function getUserToken(observableToken) {
         ajaxRequest('get', 'account/token')
-            .done(function(data) {
+            .done(function (data) {
                 observableToken(data);
             });
     }
@@ -30,7 +30,7 @@ window.bookmarkApp.datacontext = (function () {
     function deleteBookmark(observableBookmark) {
         return ajaxRequest('delete', '/api/bookmarks/' + observableBookmark().id);
     }
-    
+
     function ajaxRequest(type, url, data, dataType) {
         var options = {
             dataType: dataType || "json",
@@ -45,6 +45,7 @@ window.bookmarkApp.datacontext = (function () {
                 'RequestVerificationToken': antiForgeryToken
             };
         }
+
         return $.ajax(url, options);
     }
 })();

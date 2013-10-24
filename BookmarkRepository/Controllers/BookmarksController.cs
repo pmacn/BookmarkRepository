@@ -86,5 +86,12 @@ namespace BookmarkRepository.Controllers
             session.SaveChanges();
             return Ok(BookmarkDto.Create(bookmark));
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if(disposing)
+                session.Dispose();
+        }
     }
 }

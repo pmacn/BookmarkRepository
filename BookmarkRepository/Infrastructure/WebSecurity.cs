@@ -12,14 +12,14 @@ namespace BookmarkRepository.Infrastructure
 {
     public class WebSecurity
     {
-        public static IDocumentStore Store { get { return DependencyConfig.Get<IDocumentStore>(); } }
+        private readonly static IDocumentStore store = DependencyConfig.Get<IDocumentStore>();
 
         public static bool Login(string userName, string password, bool persistCookie = false)
         {
             if (String.IsNullOrWhiteSpace(userName) || String.IsNullOrWhiteSpace(password))
                 return false;
 
-            using (var session = Store.OpenSession())
+            using (var session = store.OpenSession())
             {
                 var user = session.Query<UserProfile>().SingleOrDefault(p => p.UserName == userName);
                 if (user == null)
@@ -45,7 +45,7 @@ namespace BookmarkRepository.Infrastructure
             if (String.IsNullOrWhiteSpace(password))
                 throw new MembershipCreateUserException(MembershipCreateStatus.InvalidPassword);
 
-            using (var session = Store.OpenSession())
+            using (var session = store.OpenSession())
             {
                 if (session.Query<UserProfile>().Any(p => p.UserName == userName))
                     throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
@@ -62,7 +62,7 @@ namespace BookmarkRepository.Infrastructure
 
         public static bool ChangePassword(string userName, string oldPassword, string newPassword)
         {
-            using (var session = Store.OpenSession())
+            using (var session = store.OpenSession())
             {
                 var user = session.Query<UserProfile>().SingleOrDefault(p => p.UserName == userName);
                 if (user == null)

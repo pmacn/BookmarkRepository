@@ -1,4 +1,5 @@
-﻿using System.Web.Http.Results;
+﻿using System.Web.Http.Cors;
+using System.Web.Http.Results;
 using AutoMapper;
 using BookmarkRepository.Models;
 using Raven.Client;
@@ -45,9 +46,14 @@ namespace BookmarkRepository.Controllers
         }
 
         // POST api/bookmarks
-        public IHttpActionResult Post([FromBody]BookmarkDto value)
+        [EnableCors("*", "Content-Type", "POST")]
+        public IHttpActionResult Post(Guid token, [FromBody]BookmarkDto value)
         {
-            var bookmark = new Bookmark { Name = value.Name, Url = value.Url, Owner = User.Identity.Name };
+            var user = session.Query<UserProfile>().SingleOrDefault(p => p.BookmarkletToken == token);
+            if (user == null)
+                return Unauthorized();
+
+            var bookmark = new Bookmark { Name = value.Name, Url = value.Url, Owner = user.UserName };
             session.Store(bookmark);
             session.SaveChanges();
             return Created(Url.Link("DefaultApi", new { Controller = "Bookmarks", Action = "Get", Id = bookmark.Id.ToString() }), Mapper.Map<BookmarkDto>(bookmark));

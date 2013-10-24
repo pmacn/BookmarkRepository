@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Transactions;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using BookmarkRepository.Infrastructure;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
-//using WebMatrix.WebData;
 using BookmarkRepository.Filters;
 using BookmarkRepository.Models;
+using Raven.Client;
 
 namespace BookmarkRepository.Controllers
 {
@@ -18,6 +20,19 @@ namespace BookmarkRepository.Controllers
     {
         //
         // POST: /Account/JsonLogin
+
+        [HttpGet]
+        public JsonResult Token()
+        {
+            using (var session = DependencyConfig.Get<IDocumentSession>())
+            {
+                var user = session.Query<UserProfile>().SingleOrDefault(p => p.UserName == User.Identity.Name);
+                if (user == null)
+                    throw new HttpException(400, "Bad request");
+
+                return Json(user.BookmarkletToken, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [AllowAnonymous]
         [HttpPost]

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,7 @@ namespace BookmarkRepository.Models
         public UserProfile()
         {
             Roles = new List<string>();
+            BookmarkletToken = Guid.NewGuid();
         }
 
         [Key]
@@ -19,6 +21,7 @@ namespace BookmarkRepository.Models
         [Required]
         public string Password { get; set; }
         public IList<string> Roles { get; set; }
+        public Guid BookmarkletToken { get; set; }
     }
 
     public class RegisterExternalLoginModel

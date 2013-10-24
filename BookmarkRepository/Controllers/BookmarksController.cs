@@ -12,7 +12,6 @@ using System.Web.Http;
 
 namespace BookmarkRepository.Controllers
 {
-    [Authorize]
     public class BookmarksController : ApiController
     {
         private readonly IDocumentSession session;
@@ -23,6 +22,7 @@ namespace BookmarkRepository.Controllers
         }
 
         // GET api/bookmarks
+        [Authorize]
         public IHttpActionResult Get()
         {
             var bookmarks = session.Query<Bookmark>()
@@ -33,6 +33,7 @@ namespace BookmarkRepository.Controllers
         }
 
         // GET api/bookmarks/id
+        [Authorize]
         public IHttpActionResult Get(int id)
         {
             var bookmark = session.Load<Bookmark>(id);
@@ -46,7 +47,7 @@ namespace BookmarkRepository.Controllers
         }
 
         // POST api/bookmarks
-        [EnableCors("*", "Content-Type", "POST")]
+        //[EnableCors("*", "Content-Type", "POST")]
         public IHttpActionResult Post(Guid token, [FromBody]BookmarkDto value)
         {
             var user = session.Query<UserProfile>().SingleOrDefault(p => p.BookmarkletToken == token);
@@ -59,7 +60,18 @@ namespace BookmarkRepository.Controllers
             return Created(Url.Link("DefaultApi", new { Controller = "Bookmarks", Action = "Get", Id = bookmark.Id.ToString() }), Mapper.Map<BookmarkDto>(bookmark));
         }
 
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            response.Headers.Add("Access-Control-Allow-Methods", "POST");
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            return response;
+        }
+
         // PUT api/bookmarks/5
+        [Authorize]
         public IHttpActionResult Put(int id, [FromBody]BookmarkDto dto)
         {
             if (id != dto.Id)
@@ -79,6 +91,7 @@ namespace BookmarkRepository.Controllers
         }
 
         // DELETE api/bookmarks/5
+        [Authorize]
         public IHttpActionResult Delete(int id)
         {
             var bookmark = session.Load<Bookmark>(id);

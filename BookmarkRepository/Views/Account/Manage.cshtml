@@ -8,28 +8,28 @@
 </header>
 
 <div id="main-content">
-    <p class="message-success">@ViewBag.StatusMessage</p>
 
-    <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
-    <p>@Html.ActionLink("Back to My Todo List", "Index", "Home")</p>
-
-    <section class="todoList">
-    @if (ViewBag.HasLocalPassword)
-    {
-        @Html.Partial("_ChangePasswordPartial")
-    }
-    else
-    { 
-        @Html.Partial("_SetPasswordPartial")
-    }
+<div id="managePanel">
+    <section id="passwordSetPanel">
+        <p class="message-success">@ViewBag.StatusMessage</p>
+        <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+        @*@if (ViewBag.HasLocalPassword)
+        {*@
+            @Html.Partial("_ChangePasswordPartial")
+        @*}
+        else
+        { 
+            @Html.Partial("_SetPasswordPartial")
+        }*@
     </section>
 
-    <section class="todoList" id="externalLogins">
-        @Html.Action("RemoveExternalLogins")
+    <section id="socialLoginPanel">
+        @*@Html.Action("RemoveExternalLogins")*@
 
         <h3>Add an external login</h3>
         @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
     </section>
+</div>
 </div>
 
 @section Scripts {

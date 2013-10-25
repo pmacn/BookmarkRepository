@@ -98,7 +98,7 @@ header {
     padding: 25px;
 }
 
-#loginPanel {
+#loginPanel, #managePanel {
     display: block;
     position: relative;
     float: left;
@@ -108,24 +108,24 @@ header {
 }
 
 #registerPanel h2,
-#loginPanel h2 {
+#loginPanel, #managePanel  h2 {
     padding-bottom: .5em;
     margin: 0;
 }
 
 #registerPanel a,
-#loginPanel a {
+#loginPanel, #managePanel  a {
     color: navy;
     font-weight: bold;
     cursor: pointer;
 }
 
 #registerPanel p,
-#loginPanel p {
+#loginPanel, #managePanel  p {
     clear: both;
 }
 
-#localLoginPanel {
+#localLoginPanel, #passwordSetPanel {
     border-right: solid 2px #c8c8c8;
     float: left;
     width: 45%;

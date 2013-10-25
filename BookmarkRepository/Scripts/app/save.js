@@ -24,8 +24,12 @@
 
     function handleReadyStateChange(change) {
         var request = change.target;
-        if (request.readyState == 4 && request.status == HTTP_CREATED) {
-            setDialogMessage('Bookmark saved');
+        if (request.readyState == 4) {
+            if (request.status == HTTP_CREATED) {
+                setDialogMessage('Bookmark saved');
+            } else {
+                setDialogMessage('Bookmark.. maybe saved?');
+            }
             window.setTimeout(function () {
                 deleteDialog();
             }, 3000);

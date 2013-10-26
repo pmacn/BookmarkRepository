@@ -23,6 +23,9 @@ input, button {
     [type=text], [type=password] {
         background: white;
     }
+    &:hover, &:focus {
+        background-color: lighten(@color-highlight, 35%);
+    }
 }
 
     button, input[type=submit] {
@@ -108,22 +111,23 @@ header {
     margin-bottom: .8em;
 }
 
-#registerPanel {
-    display: none;
-    position: relative;
-    float: left;
-    text-align: left;
-    padding: 25px;
-}
-#loginPanel, #managePanel {
-    display: block;
+.accountPanel() {
+    .rounded-corners;
+    background-color: @color-secondary;
     position: relative;
     float: left;
     text-align: left;
     padding: 1em;
-    //width: 600px;
-    background-color: @color-secondary;
-    border-radius: 0.5em;
+}
+
+#registerPanel {
+    .accountPanel;
+    display: none;
+}
+
+#loginPanel, #managePanel {
+    .accountPanel;
+    display: block;
 }
 
     #registerPanel h2,

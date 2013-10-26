@@ -1,5 +1,5 @@
 ﻿#shortcutLegend {
-  background-color: #eeeeee;
+  background-color: #e1efb4;
 }
 #shortcutLegend h4,
 #shortcutLegend p {
@@ -13,7 +13,7 @@
   margin-left: 0.5em;
 }
 #bookmarkletSection {
-  background-color: #eeeeee;
+  background-color: #e1efb4;
 }
 #bookmarkletSection h4,
 #bookmarkletSection p {
@@ -44,7 +44,7 @@
   background-color: #b7d84b;
 }
 #bookmarks .bookmark:nth-child(2n) {
-  background-color: #eeeeee;
+  background-color: #e1efb4;
 }
 #bookmarks .bookmark .url {
   margin: 0.1em;

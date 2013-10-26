@@ -1,0 +1,25 @@
+﻿.rounded-corners (@radius: .5em) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.side-panel (@side: right, @width: 20em) {
+    float: @side;
+    clear: @side;
+    width: @width;
+    padding: 1em;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.side-panel (right, @width: 20em) {
+    margin-right: 1em;
+}
+
+.side-panel (left, @width: 20em) {
+    margin-left: 1em;
+}

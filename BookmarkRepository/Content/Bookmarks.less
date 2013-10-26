@@ -1,0 +1,68 @@
+﻿@import 'Colors.less';
+@import 'Mixins.less';
+
+#shortcutLegend {
+    background-color: @color-secondary;
+
+    h4, p {
+        margin: 0;
+        padding: 0;
+        
+    }
+
+    h3 {
+        margin-top: 0;
+    }
+
+    p {
+        margin-left: 0.5em;
+    }
+}
+
+#bookmarkletSection {
+    background-color: @color-secondary;
+
+    h4, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        margin-top: 0;
+    }
+
+    p {
+        margin-left: 0.5em;
+    }
+}
+
+#bookmarks {
+    margin: 0em 1em;
+    padding: 0;
+    list-style: none outside none;
+
+    .bookmark {
+        .rounded-corners;
+        margin: 0.2em;
+        padding: 0.2em;
+        &:nth-child(2n+1) {
+            background-color: @color-primary;
+        }
+        &:nth-child(2n) {
+            background-color: @color-secondary;
+        }
+
+        .url {
+            margin: 0.1em;
+            text-decoration: none;
+        }
+
+        .name {
+            margin: 0.1em;
+        }
+    }
+
+    .selectedBookmark {
+        background-color: @color-highlight !important; 
+    }
+}

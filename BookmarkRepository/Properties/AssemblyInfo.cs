@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BookmarkRepository")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Energy Laboratories Inc.")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BookmarkRepository")]
-[assembly: AssemblyCopyright("Copyright © Energy Laboratories Inc. 2013")]
+[assembly: AssemblyCopyright("Copyright © Peter MacNaughton 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,27 +1,58 @@
-﻿ul#bookmarks {
-    padding: 0.2em;
-    list-style-type: none;
-    font-family:  Arial, Verdana, sans-serif;
+﻿#shortcutLegend {
+  background-color: #eeeeee;
 }
-
-li.bookmark {
-    margin: 0.2em;
-    padding: 0.2em;
-    -moz-border-radius: 0.2em;
-    -webkit-border-radius: 0.2em;
-    border-radius: 0.2em;
-    background-color: lightgray;
+#shortcutLegend h4,
+#shortcutLegend p {
+  margin: 0;
+  padding: 0;
 }
-
-ul#bookmarks > li.bookmark > .name {
-    margin: 0.1em;
+#shortcutLegend h3 {
+  margin-top: 0;
 }
-
-ul#bookmarks > li.bookmark > .url {
-    margin: 0.1em;
-    text-decoration: none;
+#shortcutLegend p {
+  margin-left: 0.5em;
 }
-
-li.selectedBookmark {
-    background-color: azure;
+#bookmarkletSection {
+  background-color: #eeeeee;
+}
+#bookmarkletSection h4,
+#bookmarkletSection p {
+  margin: 0;
+  padding: 0;
+}
+#bookmarkletSection h3 {
+  margin-top: 0;
+}
+#bookmarkletSection p {
+  margin-left: 0.5em;
+}
+#bookmarks {
+  margin: 0em 1em;
+  padding: 0;
+  list-style: none outside none;
+}
+#bookmarks .bookmark {
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -ms-border-radius: 0.5em;
+  -o-border-radius: 0.5em;
+  border-radius: 0.5em;
+  margin: 0.2em;
+  padding: 0.2em;
+}
+#bookmarks .bookmark:nth-child(2n+1) {
+  background-color: #b7d84b;
+}
+#bookmarks .bookmark:nth-child(2n) {
+  background-color: #eeeeee;
+}
+#bookmarks .bookmark .url {
+  margin: 0.1em;
+  text-decoration: none;
+}
+#bookmarks .bookmark .name {
+  margin: 0.1em;
+}
+#bookmarks .selectedBookmark {
+  background-color: #44accf !important;
 }

@@ -254,7 +254,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\Bookmarks.css" />
+    <Content Include="Content\Bookmarks.css">
+      <DependentUpon>Bookmarks.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Bookmarks.min.css">
+      <DependentUpon>Bookmarks.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Colors.css">
+      <DependentUpon>Colors.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Colors.min.css">
+      <DependentUpon>Colors.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Mixins.css">
+      <DependentUpon>Mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Mixins.min.css">
+      <DependentUpon>Mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -331,6 +354,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\Bookmarks.less" />
+    <Content Include="Content\Site.less" />
+    <Content Include="Content\Colors.less" />
+    <Content Include="Content\Mixins.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\app\bookmark.datacontext.js" />
     <Content Include="Scripts\app\bookmark.model.js" />
@@ -361,7 +388,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\app\ajaxlogin.js" />
     <Content Include="Views\_ViewStart.cshtml" />

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <title>@ViewBag.Title</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
@@ -10,25 +10,26 @@
     @Styles.Render("~/Content/themes/base/css")
 </head>
 <body>
-    <div id="userSettings">
-        @Html.Partial("_UserSettings")
+    <div id="container">
+        <header>
+            <h1>Bookmarks</h1>
+            <div id="userSettings">
+                @Html.Partial("_UserSettings")
+            </div>
+        </header>
+        <div id="body">
+            @RenderBody()
+        </div>
+        <footer>
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Bookmarks", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                </ul>
+            </nav>
+            <p>&copy; @DateTime.Now.Year - Peter MacNaughton</p>
+        </footer>
     </div>
-
-    <div id="body">
-        @RenderBody()
-    </div>
-
-    <footer>
-        <nav>
-            <ul id="menu">
-                <li>@Html.ActionLink("Bookmarks", "Index", "Home", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
-            </ul>
-        </nav> 
-        <p>Learn more about <a href="http://go.microsoft.com/fwlink/?LinkId=273732">Single Page Applications</a></p>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-    </footer>
-
     @Scripts.Render("~/bundles/base")
     @Scripts.Render("~/bundles/ajaxlogin")
     @RenderSection("scripts", required: false)

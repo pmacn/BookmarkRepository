@@ -10,47 +10,53 @@
         return cookieToken + ":" + formToken;                
     }
 }
-
-<header>
-    <h1>@ViewBag.Title</h1>
-</header>
-
 <section id="main-content">
 @if (@User.Identity.IsAuthenticated)
 {
+    <aside>
+        <section id="bookmarkletSection">
+            <h3>Adding bookmarks</h3>
+            Grab the bookmarklet below and put it on your bookmark bar.<br />
+            Browse to the page you want to bookmark and click the bookmarklet!<br />
+            <a data-bind="attr: { href: bookmarkletLink }">bookmark it!</a>
+        </section>
+    
+        <section id="shortcutLegend">
+            <h3>Keyboard shortcuts</h3>
+            <h4>up/down</h4>
+            <p>selects the previous/next bookmark.</p>
+            <h4>enter</h4>
+            <p>goes to the selected bookmark.</p>
+            <h4>delete</h4>
+            <p>deletes the selected bookmark.</p>
+        </section>
+    </aside>
     <ul id="bookmarks" data-bind="foreach: bookmarks">
         <li class="bookmark" data-bind="css: { selectedBookmark: $data == $root.selectedBookmark() }">
             <h4 class="name" data-bind="text: name"></h4>
             <a class="url" data-bind="attr: { href: url }, text: url" target="_blank"></a>
         </li>
     </ul>
-    <p>
-        grab the bookmarklet below and put it on your bookmark bar.<br />
-        then browse to the page you want to bookmark and click the bookmarklet!
-    </p>
-    <p>
-        <a data-bind="attr: { href: bookmarkletLink }">bookmarklet yo!</a>
-    </p>
-}
-else
-{
+} else {
+    <aside id="socialLoginPanel">
+        <section>
+                <h3>Log in using another service</h3>
+                @Html.Action("ExternalLoginsList", "Account", new { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </aside>
     <div id="loginPanel">
         <section id="localLoginPanel">
             <h2>Log in</h2>
             @Html.Partial("_Login")
+            <p>First time here? <a id="showRegister">Sign up</a></p>
         </section>
-        <section id="socialLoginPanel">
-            <h2>Log in using another service</h2>
-            @Html.Action("ExternalLoginsList", "Account", new { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-        <p>First time here? <a id="showRegister">Sign up</a></p>
     </div>
     <div id="registerPanel">
         <h2>Sign up</h2>
         @Html.Partial("_Register")
         <p>Already signed up? <a id="showLogin">Log in</a></p>
     </div>
-}
+    }
 </section>
 
 @if (@User.Identity.IsAuthenticated)

@@ -31,8 +31,8 @@ namespace BookmarkRepository
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/Site.css",
-                "~/Content/Bookmarks.css"));
+                "~/Content/Site.min.css",
+                "~/Content/Bookmarks.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
@@ -47,6 +47,8 @@ namespace BookmarkRepository
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

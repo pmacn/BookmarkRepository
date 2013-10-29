@@ -243,9 +243,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
-    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Infrastructure\NinjectDependencyScope.cs" />
+    <Compile Include="Infrastructure\NinjectMvcDependencyResolver.cs" />
+    <Compile Include="Infrastructure\NinjectHttpDependencyResolver.cs" />
     <Compile Include="Infrastructure\WebSecurity.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Bookmark.cs" />

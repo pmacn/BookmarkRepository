@@ -15,12 +15,15 @@ namespace BookmarkRepository
     {
         private static StandardKernel kernel = new StandardKernel();
 
+        public static System.Web.Mvc.IDependencyResolver MvcDependencyResolver { get { return kernel.Get<System.Web.Mvc.IDependencyResolver>(); } }
+        public static System.Web.Http.Dependencies.IDependencyResolver HttpDependencyResolver { get { return kernel.Get<System.Web.Http.Dependencies.IDependencyResolver>(); } }
+
         public static void RegisterDependencies()
         {
             kernel.Bind<IDocumentStore>().ToConstant(new EmbeddableDocumentStore { ConnectionStringName = "RavenDb" }.Initialize());
             kernel.Bind<IDocumentSession>().ToMethod(c => c.Kernel.Get<IDocumentStore>().OpenSession());
-            kernel.Bind<System.Web.Mvc.IControllerFactory>().To<NinjectControllerFactory>();
-            kernel.Bind <IDependencyResolver>().To<NinjectDependencyResolver>();
+            kernel.Bind<System.Web.Mvc.IDependencyResolver>().To<NinjectMvcDependencyResolver>().InSingletonScope();
+            kernel.Bind<System.Web.Http.Dependencies.IDependencyResolver>().To<NinjectHttpDependencyResolver>();
         }
 
         public static TInterface Get<TInterface>()

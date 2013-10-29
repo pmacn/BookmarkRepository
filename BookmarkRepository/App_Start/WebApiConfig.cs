@@ -25,7 +25,7 @@ namespace BookmarkRepository
 
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            config.DependencyResolver = DependencyConfig.Get<IDependencyResolver>();
+            config.DependencyResolver = DependencyConfig.HttpDependencyResolver;
         }
     }
 }

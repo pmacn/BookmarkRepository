@@ -1,11 +1,27 @@
+﻿using Ninject;
+using Ninject.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
-using Ninject;
-using Ninject.Syntax;
 
 namespace BookmarkRepository.Infrastructure
 {
+    public class NinjectHttpDependencyResolver : NinjectDependencyScope, IDependencyResolver
+    {
+        private readonly IKernel kernel;
+
+        public NinjectHttpDependencyResolver(IKernel kernel)
+            : base(kernel)
+        {
+            this.kernel = kernel;
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            return new NinjectDependencyScope(kernel.BeginBlock());
+        }
+    }
+
     public class NinjectDependencyScope : IDependencyScope
     {
         private IResolutionRoot resolver;

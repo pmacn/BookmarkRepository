@@ -19,7 +19,6 @@ namespace BookmarkRepository
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            //ControllerBuilder.Current.SetControllerFactory(DependencyConfig.Get<IControllerFactory>());
             DependencyResolver.SetResolver(DependencyConfig.MvcDependencyResolver);
         }
     }

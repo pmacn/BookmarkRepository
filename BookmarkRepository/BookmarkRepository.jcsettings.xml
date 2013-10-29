@@ -2,6 +2,7 @@
 <JustCodeSettings Version="0.0" Timestamp="140c9c9d-128e-44e4-9b7e-1e5b82885e31">
   <NamespaceContributionSettings xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
     <IgnoredFolders>
+      <App_Data />
       <App_Start />
     </IgnoredFolders>
   </NamespaceContributionSettings>

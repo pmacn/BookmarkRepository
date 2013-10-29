@@ -12,26 +12,33 @@ using Microsoft.Web.WebPages.OAuth;
 using BookmarkRepository.Filters;
 using BookmarkRepository.Models;
 using Raven.Client;
+using BookmarkRepository.Infrastructure.Security;
 
 namespace BookmarkRepository.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private readonly ISecurity security;
+
+        private readonly ProfileStore profileStore;
+
+        public AccountController(ISecurity security, ProfileStore profileStore)
+        {
+            this.security = security;
+            this.profileStore = profileStore;
+        }
+
         //
         // POST: /Account/JsonLogin
-
         [HttpGet]
         public JsonResult Token()
         {
-            using (var session = DependencyConfig.Get<IDocumentSession>())
-            {
-                var user = session.Query<UserProfile>().SingleOrDefault(p => p.UserName == User.Identity.Name);
-                if (user == null)
-                    throw new HttpException(400, "Bad request");
+            if (!User.Identity.IsAuthenticated)
+                throw new HttpException(400, "Bad request");
 
-                return Json(user.BookmarkletToken, JsonRequestBehavior.AllowGet);
-            }
+            var profile = profileStore.GetProfile(User.Identity.Name);
+            return Json(profile.BookmarkletToken, JsonRequestBehavior.AllowGet);
         }
 
         [AllowAnonymous]
@@ -40,7 +47,7 @@ namespace BookmarkRepository.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+                if (security.SignIn(model.UserName, model.Password, model.RememberMe))
                 {
                     return Json(new { success = true, redirect = returnUrl });
                 }
@@ -53,12 +60,11 @@ namespace BookmarkRepository.Controllers
 
         //
         // POST: /Account/LogOff
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
+            security.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
@@ -75,8 +81,8 @@ namespace BookmarkRepository.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    security.CreateAccount(model.UserName, model.Password);
+                    security.SignIn(model.UserName, model.Password, false);
 
                     return Json(new { success = true, redirect = returnUrl });
                 }
@@ -153,7 +159,8 @@ namespace BookmarkRepository.Controllers
                     bool changePasswordSucceeded;
                     try
                     {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                        changePasswordSucceeded = security.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                        //changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
                     }
                     catch (Exception)
                     {

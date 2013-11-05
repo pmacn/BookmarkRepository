@@ -50,11 +50,11 @@ namespace BookmarkRepository.Controllers
         //[EnableCors("*", "Content-Type", "POST")]
         public IHttpActionResult Post(Guid token, [FromBody]BookmarkDto value)
         {
-            var user = session.Query<UserProfile>().SingleOrDefault(p => p.BookmarkletToken == token);
-            if (user == null)
+            var profile = session.Query<UserProfile>().SingleOrDefault(p => p.BookmarkletToken == token);
+            if (profile == null)
                 return Unauthorized();
 
-            var bookmark = new Bookmark { Name = value.Name, Url = value.Url, Owner = user.UserName };
+            var bookmark = new Bookmark { Name = value.Name, Url = value.Url, Owner = profile.Username };
             session.Store(bookmark);
             session.SaveChanges();
             return Created(Url.Link("DefaultApi", new { Controller = "Bookmarks", Action = "Get", Id = bookmark.Id.ToString() }), Mapper.Map<BookmarkDto>(bookmark));
